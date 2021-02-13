@@ -28,7 +28,7 @@ var map = new ol.Map({
 var draw = new ol.interaction.Draw({
   source: source,
   type: 'LineString',
-  maxPoints: 2,
+  maxPoints: 2, // remove for unlimited lines
 });
 
 draw.on('drawend', function (evt) {
