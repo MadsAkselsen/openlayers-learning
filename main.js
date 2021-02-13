@@ -18,4 +18,19 @@ function init() {
     ],
     target: 'js-map',
   });
+
+  const popupContainerElement = document.getElementById('popup-coordinates');
+  const popup = new ol.Overlay({
+    element: popupContainerElement,
+    positioning: 'bottom-center',
+  });
+
+  map.addOverlay(popup);
+
+  map.on('click', function (e) {
+    const clickedCoordinate = e.coordinate;
+    popup.setPosition(undefined);
+    popup.setPosition(clickedCoordinate);
+    popupContainerElement.textContent = clickedCoordinate;
+  });
 }
