@@ -3,10 +3,9 @@ window.onload = init;
 function init() {
   const map = new ol.Map({
     view: new ol.View({
-      center: [0, 0],
-      zoom: 2,
+      center: [-98.907449, 30.241299],
+      zoom: 10,
 
-      rotation: 1,
       enableRotation: true,
       multiworld: true,
     }),
@@ -16,7 +15,7 @@ function init() {
         opacity: 1,
       }),
     ],
-    target: 'js-map',
+    target: 'map',
   });
 
   const popupContainerElement = document.getElementById('popup-coordinates');
@@ -24,6 +23,8 @@ function init() {
     element: popupContainerElement,
     positioning: 'bottom-center',
   });
+
+  map.addOverlay(polyline);
 
   map.addOverlay(popup);
 

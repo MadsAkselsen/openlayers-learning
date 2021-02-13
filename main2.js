@@ -1,5 +1,5 @@
 var map = new ol.Map({
-  target: 'js-map',
+  target: 'map',
   layers: [
     new ol.layer.Tile({
       source: new ol.source.OSM(),
