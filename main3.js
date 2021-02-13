@@ -1,3 +1,6 @@
+// reference for this code:
+// https://stackoverflow.com/questions/41550597/how-to-add-a-polyline-to-openlayers-3-using-my-own-coordinates/41564159
+
 var locations = [
   [53.44241609, 6.84913974],
   [53.44241894, 6.84913726],
