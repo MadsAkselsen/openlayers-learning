@@ -4,9 +4,7 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "parcel index.html",
-    "build": "parcel build --public-url . index.html"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -19,9 +17,6 @@
     "url": "https://github.com/MadsAkselsen/openlayers-learning/issues"
   },
   "homepage": "https://github.com/MadsAkselsen/openlayers-learning#readme",
-  "devDependencies": {
-    "parcel": "^2.0.0-beta.1"
-  },
   "dependencies": {
     "ol": "6.5.0"
   }
