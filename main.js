@@ -3,8 +3,8 @@ window.onload = init;
 function init() {
   const map = new ol.Map({
     view: new ol.View({
-      center: [-98.907449, 30.241299],
-      zoom: 10,
+      center: [0, 0],
+      zoom: 2,
 
       enableRotation: true,
       multiworld: true,
@@ -16,6 +16,7 @@ function init() {
       }),
     ],
     target: 'map',
+    keyboardEventTarget: document,
   });
 
   const popupContainerElement = document.getElementById('popup-coordinates');
@@ -23,8 +24,6 @@ function init() {
     element: popupContainerElement,
     positioning: 'bottom-center',
   });
-
-  map.addOverlay(polyline);
 
   map.addOverlay(popup);
 
@@ -34,4 +33,11 @@ function init() {
     popup.setPosition(clickedCoordinate);
     popupContainerElement.textContent = clickedCoordinate;
   });
+
+  // DragRotate Interaction
+  const dragRotateInteraction = new ol.interaction.DragRotate({
+    condition: ol.events.condition.altKeyOnly,
+  });
+
+  map.addInteraction(dragRotateInteraction);
 }
