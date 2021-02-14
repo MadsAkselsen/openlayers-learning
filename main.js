@@ -40,4 +40,20 @@ function init() {
   });
 
   map.addInteraction(dragRotateInteraction);
+
+  const drawInteraction = new ol.interaction.Draw({
+    type: 'Polygon',
+    freehand: true,
+  });
+
+  map.addInteraction(drawInteraction);
+
+  // extract coordinates for the drawing. This cna be stored in a database
+  // on event 'drawend' do the following...
+  drawInteraction.on('drawend', (e) => {
+    console.log('drawing done', e.feature);
+    let parser = new ol.format.GeoJSON();
+    let drawnFeatures = parser.writeFeaturesObject([e.feature]);
+    console.log(drawnFeatures);
+  });
 }
