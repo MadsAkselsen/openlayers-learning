@@ -1,1 +1,1 @@
-Practicing OpenLayers.
+Practicing OpenLayers
