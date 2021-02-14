@@ -1,13 +1,27 @@
 window.onload = init;
 
 function init() {
+  // Controls
+  const fullScreenControl = new ol.control.FullScreen();
+  const mousePosition = new ol.control.MousePosition();
+  const overviewMapControl = new ol.control.OverviewMap({
+    className: 'ol-overviewmap ol-custom-overviewmap',
+    collapsed: false,
+    layers: [
+      new ol.layer.Tile({
+        source: new ol.source.OSM(),
+      }),
+    ],
+  });
+  const scaleLineControl = new ol.control.ScaleLine();
+  const zoomSliderControl = new ol.control.ZoomSlider();
+  const zoomToExtentControl = new ol.control.ZoomToExtent();
+
   const map = new ol.Map({
     view: new ol.View({
       center: [0, 0],
-      zoom: 2,
-
+      zoom: 3,
       enableRotation: true,
-      multiworld: true,
     }),
     layers: [
       new ol.layer.Tile({
@@ -17,7 +31,21 @@ function init() {
     ],
     target: 'map',
     keyboardEventTarget: document,
+    controls: ol.control
+      .defaults()
+      .extend([
+        fullScreenControl,
+        mousePosition,
+        overviewMapControl,
+        scaleLineControl,
+        zoomSliderControl,
+        zoomToExtentControl,
+      ]),
   });
+
+  console.log('controls', ol.control.defaults());
+
+  // Overlay
 
   const popupContainerElement = document.getElementById('popup-coordinates');
   const popup = new ol.Overlay({
@@ -32,9 +60,10 @@ function init() {
     popup.setPosition(undefined);
     popup.setPosition(clickedCoordinate);
     popupContainerElement.textContent = clickedCoordinate;
+    console.log(mousePosition);
   });
 
-  // DragRotate Interaction
+  // DragRotate Interaction (doesnt work while the below freehand draw interaction is added)
   const dragRotateInteraction = new ol.interaction.DragRotate({
     condition: ol.events.condition.altKeyOnly,
   });
@@ -56,4 +85,6 @@ function init() {
     let drawnFeatures = parser.writeFeaturesObject([e.feature]);
     console.log(drawnFeatures);
   });
+
+  // Controls
 }
